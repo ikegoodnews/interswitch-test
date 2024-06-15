@@ -1,0 +1,27 @@
+.dialog-modal {
+   background-color: #212121;
+   color: $color-4;
+   border-radius: 15px;
+   overflow-y: scroll;
+   height: fit-content;
+   width: fit-content;
+   max-height: calc(100vh - 70px);
+   max-width: 90vw;
+
+   -ms-overflow-style: none; /* IE and Edge */
+   scrollbar-width: 6px; /* Firefox */
+   &::-webkit-scrollbar {
+      width: 6px;
+   }
+   &::-webkit-scrollbar-track {
+      background: transparent;
+   }
+   &::-webkit-scrollbar-thumb {
+      // background-color: $color-5;
+      background-color: #222;
+      border-radius: 10px;
+   }
+   h4 {
+      color: #ffffff;
+   }
+}

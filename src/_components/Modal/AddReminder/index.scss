@@ -1,0 +1,54 @@
+.add__reminder {
+   background-color: #ffffff;
+   color: #171717;
+   border-radius: 15px;
+   overflow-y: scroll;
+   height: fit-content;
+   width: 30rem;
+   max-height: calc(100vh - 70px);
+   max-width: 90vw;
+
+   -ms-overflow-style: none; /* IE and Edge */
+   scrollbar-width: 4px; /* Firefox */
+   &::-webkit-scrollbar {
+   width: 0;
+   }
+   &::-webkit-scrollbar-track {
+   background: transparent;
+   }
+   &::-webkit-scrollbar-thumb {
+   background-color: #202020;
+   border-radius: 10px;
+   }
+
+   form {
+      display: flex;
+      flex-direction: column;
+      h3 {
+         font-weight: 600;
+      }
+      label {
+         font-size: 1rem;
+      }
+      input {
+         font-size: 1rem;
+         padding: .7rem 1.5rem;
+         border: 1px solid #a7a7a7;
+         margin-bottom: 1rem;
+         width: 100%;
+         border-radius: 4px;
+      }
+      button {
+         background-color: #00336a;
+         font-size: 1rem;
+         padding: 1rem;
+         color: #fff;
+         border-radius: 4px;
+         transition: .2s ease-in;
+         margin-top: 2rem;
+         &:hover {
+            background-color: #00336a98;
+         }
+      }
+   }
+}

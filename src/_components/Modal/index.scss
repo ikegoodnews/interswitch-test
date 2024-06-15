@@ -1,0 +1,58 @@
+.fullscreen-modal {
+  position: fixed;
+  z-index: 1250;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .back-drop {
+    // backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+  }
+
+  .content {
+    position: relative;
+    color: #ffffff;
+    height: fit-content;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 90vh;
+    width: fit-content;
+    max-width: 90vw;
+    z-index: 501;
+
+    .closeIcon {
+      top: -2.2rem;
+      right: -2.2rem;
+      z-index: 200;
+      background-color: #ffffff;
+      cursor: pointer;
+      color: #ffffff;
+      scale: 0.65;
+      border-radius: 50%;
+    }
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: 4px; /* Firefox */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #202020;
+      border-radius: 10px;
+    }
+  }
+}
