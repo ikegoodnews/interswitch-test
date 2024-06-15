@@ -1,11 +1,8 @@
-import {eventsKey, getObjectFromStorage} from './_utils';
 import {AddReminder, AppContext, Calendar, DayEvents, EventDetails} from './_components';
-import React, {useContext, useEffect, useState} from 'react';
-import {format} from 'date-fns';
+import React, {useContext} from 'react';
 
 function App() {
-   const {events, setEvents, dayEvents, setDayEvents, selectedEvent, setSelectedEvent} = useContext(AppContext);
-   const [selectedDay, setSelectedDay] = useState(null);
+   const {setDayEvents, setSelectedEvent, setSelectedDay} = useContext(AppContext);
 
    const onDaySelect = (dayInfo, events) => {
       console.log(`dayInfo=====>`, dayInfo);
@@ -29,12 +26,8 @@ function App() {
             </div>
 
             <div className="relative h-[80vh] w-1/4 bg-color-white text-color-dark p-lg-8 p-4">
-               <EventDetails dayEvents={dayEvents} selectedDay={selectedDay} selectedEvent={selectedEvent} />
-               <AddReminder
-                  events={events}
-                  setEvents={setEvents}
-                  selectedDay={selectedDay}
-                  className="absolute bg-color-dark text-color-white font-bold bottom-6 right-6 h-12 w-12 hover:bg-color-btn-hover transition duration-300 rounded-50">
+               <EventDetails />
+               <AddReminder className="absolute bg-color-dark text-color-white font-bold bottom-6 right-6 h-12 w-12 hover:bg-color-btn-hover transition duration-300 rounded-50">
                   +
                </AddReminder>
             </div>

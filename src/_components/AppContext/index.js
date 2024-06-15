@@ -6,6 +6,7 @@ export const AppContext = createContext();
 export const AppProvider = ({children}) => {
    const [events, setEvents] = useState([]);
    const [dayEvents, setDayEvents] = useState([]);
+   const [selectedDay, setSelectedDay] = useState(null);
    const [selectedEvent, setSelectedEvent] = useState(null);
 
    useEffect(() => {
@@ -15,5 +16,9 @@ export const AppProvider = ({children}) => {
       })();
    }, []);
 
-   return <AppContext.Provider value={{events, setEvents, dayEvents, setDayEvents, selectedEvent, setSelectedEvent}}>{children}</AppContext.Provider>;
+   return (
+      <AppContext.Provider value={{events, setEvents, dayEvents, setDayEvents, selectedEvent, setSelectedEvent, selectedDay, setSelectedDay}}>
+         {children}
+      </AppContext.Provider>
+   );
 };

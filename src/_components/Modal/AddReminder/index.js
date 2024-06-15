@@ -1,14 +1,17 @@
+import React, {useCallback, useContext, useState} from 'react';
 import {eventsKey, setObjectInStorage} from '../../../_utils';
-import React, {useCallback, useState} from 'react';
+import {AppContext} from '../../AppContext';
 import FullscreenModal from '..';
 import {format} from 'date-fns';
 import './index.scss';
 
 const AddReminder = (props) => {
-   const [time, setTime] = useState('');
-   const [city, setCity] = useState('');
-   const [title, setTitle] = useState('');
+   const forEdit = props.type === 'edit';
+   const {events, setEvents, selectedDay, selectedEvent} = useContext(AppContext);
    const [open, setOpen] = useState(false);
+   const [city, setCity] = useState(selectedEvent?.city);
+   const [time, setTime] = useState(selectedEvent?.title);
+   const [title, setTitle] = useState(selectedEvent?.title);
 
    const setOpenState = useCallback(
       (v) => {
@@ -19,23 +22,32 @@ const AddReminder = (props) => {
       [props.dropState],
    );
 
-   console.log('props?.selectedDay', props?.selectedDay);
-   const yearIndex = props?.selectedDay && format(new Date(props?.selectedDay), 'yyyy');
-   const monthIndex = props?.selectedDay && format(new Date(props?.selectedDay), 'M');
-   const dayIndex = props?.selectedDay && format(new Date(props?.selectedDay), 'd');
+   const yearIndex = selectedDay && format(new Date(selectedDay), 'yyyy');
+   const monthIndex = selectedDay && format(new Date(selectedDay), 'M');
+   const dayIndex = selectedDay && format(new Date(selectedDay), 'd');
    const todaysDate = new Date(yearIndex, monthIndex - 1);
    todaysDate.setDate(dayIndex);
 
    const handleAddEvent = async (day) => {
       if (dayIndex) {
          const date = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${dayIndex}`;
+         console.log(`date=====>`, date);
          const newEvent = {
-            ...props?.events,
-            [date]: props?.events[date] ? [...props?.events[date], {title, city, time}] : [{title, city, time}],
+            ...events,
+            [date]: events[date] ? [...events[date], {id: date, title, city, time}] : [{id: date, title, city, time}],
          };
-         props?.setEvents(newEvent);
+         setEvents(newEvent);
          await setObjectInStorage(eventsKey, newEvent);
       }
+   };
+
+   const handleEditEvent = () => {
+      // setEvents((prevEvents) =>
+      //    prevEvents.map((event) => {
+      //       event.id === selectedEvent.id ? {...event, title, city, time} : event;
+      //       setObjectInStorage();
+      //    }),
+      // );
    };
 
    // <button onClick={() => editEvent({ ...event, title: prompt('Edit event title', event.title) })}>Edit</button>
@@ -88,7 +100,7 @@ const AddReminder = (props) => {
                      Time
                   </label>
                   <input type="time" name="time" id="time" maxlength="30" value={time} onChange={(e) => setTime(e.target.value)} required />
-                  <button onClick={handleAddEvent} className="">
+                  <button onClick={forEdit ? handleEditEvent : handleAddEvent} className="">
                      submit
                   </button>
                </form>
