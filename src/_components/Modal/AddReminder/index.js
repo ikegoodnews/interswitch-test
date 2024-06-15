@@ -31,7 +31,7 @@ const AddReminder = (props) => {
          const date = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${dayIndex}`;
          const newEvent = {
             ...props?.events,
-            [date]: props?.events[date] ? [...props?.events[date], title] : [title],
+            [date]: props?.events[date] ? [...props?.events[date], {title, city, time}] : [{title, city, time}],
          };
          props?.setEvents(newEvent);
          await setObjectInStorage(eventsKey, newEvent);
@@ -78,17 +78,19 @@ const AddReminder = (props) => {
                   <label htmlFor="title" className="">
                      Title
                   </label>
-                  <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                  <input type="text" name="title" id="title" maxlength="30" value={title} onChange={(e) => setTitle(e.target.value)} required />
                   <label htmlFor="city" className="">
                      City
                   </label>
-                  <input type="text" name="city" id="city" value={city} onChange={(e) => setCity(e.target.value)} />
+                  <input type="text" name="city" id="city" maxlength="30" value={city} onChange={(e) => setCity(e.target.value)} required />
                   {/* <input type="text" name="title" id="title" value={day} onChange={(e) => setDay(e.target.value)} /> */}
                   <label htmlFor="time" className="">
                      Time
                   </label>
-                  <input type="time" name="time" id="time" value={time} onChange={(e) => setTime(e.target.value)} />
-                  <button onClick={handleAddEvent} className="">submit</button>
+                  <input type="time" name="time" id="time" maxlength="30" value={time} onChange={(e) => setTime(e.target.value)} required />
+                  <button onClick={handleAddEvent} className="">
+                     submit
+                  </button>
                </form>
             </div>
          </FullscreenModal>
