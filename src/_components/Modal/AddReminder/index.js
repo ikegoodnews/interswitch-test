@@ -40,13 +40,15 @@ const AddReminder = (props) => {
       }
    };
 
-   const handleEditEvent = () => {
-      // setEvents((prevEvents) =>
-      //    prevEvents.map((event) => {
-      //       event.id === selectedEvent.id ? {...event, title, city, time} : event;
-      //       setObjectInStorage();
-      //    }),
-      // );
+   const handleEditReminder = (id) => {
+      setEvents((prevReminders) => {
+         const updatedReminders = {...prevReminders};
+         updatedReminders[selectedEvent?.id] = updatedReminders[selectedEvent?.id].map((reminder) =>
+            reminder?.id === selectedEvent?.id ? {id: selectedEvent?.id, title, city, time} : reminder,
+         );
+         setObjectInStorage(eventsKey, updatedReminders);
+         return updatedReminders;
+      });
    };
 
    const handleClickOutside = useCallback(() => {
@@ -69,17 +71,16 @@ const AddReminder = (props) => {
                   <label htmlFor="title" className="">
                      Title
                   </label>
-                  <input type="text" name="title" id="title" maxlength="30" value={title} onChange={(e) => setTitle(e.target.value)} required />
+                  <input type="text" name="title" id="title" maxLength="30" value={title} onChange={(e) => setTitle(e.target.value)} required />
                   <label htmlFor="city" className="">
                      City
                   </label>
-                  <input type="text" name="city" id="city" maxlength="30" value={city} onChange={(e) => setCity(e.target.value)} required />
-                  {/* <input type="text" name="title" id="title" value={day} onChange={(e) => setDay(e.target.value)} /> */}
+                  <input type="text" name="city" id="city" maxLength="30" value={city} onChange={(e) => setCity(e.target.value)} required />
                   <label htmlFor="time" className="">
                      Time
                   </label>
-                  <input type="time" name="time" id="time" maxlength="30" value={time} onChange={(e) => setTime(e.target.value)} required />
-                  <button onClick={forEdit ? handleEditEvent : handleAddEvent} className="">
+                  <input type="time" name="time" id="time" maxLength="30" value={time} onChange={(e) => setTime(e.target.value)} required />
+                  <button onClick={forEdit ? handleEditReminder : handleAddEvent} className="">
                      submit
                   </button>
                </form>

@@ -47,7 +47,9 @@ const EventDetails = () => {
                   </div>
 
                   <div className="mt-4 flex items-center justify-between">
-                     <AddReminder type="edit" className="mr-4 transition border border-solid text-color-1 border-color-1 hover:border-color-1-hover rounded-4 p-2 capitalize text-xs">
+                     <AddReminder
+                        type="edit"
+                        className="mr-4 transition border border-solid text-color-1 border-color-1 hover:border-color-1-hover rounded-4 p-2 capitalize text-xs">
                         edit reminder
                      </AddReminder>
                      <Dialogue
