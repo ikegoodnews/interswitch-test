@@ -5,11 +5,12 @@ import {format} from 'date-fns';
 import './index.scss';
 
 const Calendar = () => {
-   const daysOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
    const {events, selectedEvent, selectedDay, setSelectedEvent, onEventSelect, onDaySelect} = useContext(AppContext);
-   const [currentDate, setCurrentDate] = useState(new Date());
 
    let weekends = [];
+   const [currentDate, setCurrentDate] = useState(new Date());
+   const daysOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
    const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
    const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
    const startDay = startOfMonth.getDay();

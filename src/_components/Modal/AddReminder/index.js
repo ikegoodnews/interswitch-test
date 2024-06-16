@@ -31,7 +31,6 @@ const AddReminder = (props) => {
    const handleAddEvent = async (day) => {
       if (dayIndex) {
          const date = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${dayIndex}`;
-         console.log(`date=====>`, date);
          const newEvent = {
             ...events,
             [date]: events[date] ? [...events[date], {id: date, title, city, time}] : [{id: date, title, city, time}],
@@ -50,17 +49,6 @@ const AddReminder = (props) => {
       // );
    };
 
-   // <button onClick={() => editEvent({ ...event, title: prompt('Edit event title', event.title) })}>Edit</button>
-   // <button onClick={() => deleteEvent(event.id)}>Delete</button>
-
-   // const editEvent = (updatedEvent) => {
-   //    props?.setEvents(props?.events.map((event) => (event.id === updatedEvent.id ? updatedEvent : event)));
-   // };
-
-   // const deleteEvent = (id) => {
-   //    props?.setEvents(props?.events.filter((event) => event.id !== id));
-   // };
-
    const handleClickOutside = useCallback(() => {
       setTime('');
       setCity('');
@@ -68,15 +56,6 @@ const AddReminder = (props) => {
       setOpenState(false);
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, []);
-
-   // useEffect(() => {
-   //    const listener = AppEmitter.addListener('', (event) => {
-   //       handleClickOutside();
-   //    });
-
-   //    return () => listener.remove();
-   //    // eslint-disable-next-line react-hooks/exhaustive-deps
-   // }, []);
 
    return (
       <>

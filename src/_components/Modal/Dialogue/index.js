@@ -1,6 +1,7 @@
 import React, {memo, useCallback, useState} from 'react';
 import FullscreenModal from '..';
 import PropTypes from 'prop-types';
+import './index.scss';
 
 // eslint-disable-next-line react/display-name
 const DialogModal = memo((props) => {
@@ -42,9 +43,9 @@ const DialogModal = memo((props) => {
                      onClick={handleCancel}
                      style={{
                         backgroundColor: 'transparent',
-                        border: '1px solid #F53B00',
-                        color: '#F53B00',
-                        borderRadius: '25px',
+                        border: '1px solid #ba0000',
+                        color: '#ba0000',
+                        borderRadius: '5px',
                      }}>
                      {props.rejectText}
                   </button>
@@ -52,9 +53,10 @@ const DialogModal = memo((props) => {
                      onClick={handleAction}
                      className="ms-4 p-2 px-4 rounded"
                      style={{
-                        backgroundColor: '#F53B00',
-                        border: '1px solid #F53B00',
+                        backgroundColor: '#ba0000',
+                        border: '1px solid #ba0000',
                         color: '#fff',
+                        borderRadius: '5px',
                      }}>
                      {props.actionText}
                   </button>
