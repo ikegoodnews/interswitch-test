@@ -6,6 +6,8 @@ module.exports = {
       colors: {
          'color-white': '#ffffff',
          'color-dark': '#000000',
+         'color-1': '#ba0000',
+         'color-1-hover': '#ba000098',
          'color-btn-hover': '#303030',
          'color-3-hover': '#34A85398',
       },
@@ -21,6 +23,7 @@ module.exports = {
       },
       borderRadius: {
          50: '50%',
+         4: '4px',
       },
       extend: {
          // boxShadow: {

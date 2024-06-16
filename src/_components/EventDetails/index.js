@@ -38,22 +38,28 @@ const EventDetails = () => {
                      <p className="">{selectedEvent?.city}</p>
                   </div>
                   <div className="flex items-center">
+                     <h3 className="mr-1">Date:</h3>
+                     <p className="">{format(new Date(selectedEvent?.id), 'EE, dd-MM-yyyy')}</p>
+                  </div>
+                  <div className="flex items-center">
                      <h3 className="mr-1">Time:</h3>
                      <p className="">{selectedEvent?.time}</p>
                   </div>
 
-                  <AddReminder type="edit" className="mr-4">
-                     edit reminder
-                  </AddReminder>
-                  <Dialogue
-                     description="Delete reminder from your calendar?"
-                     title="Delete Reminder?"
-                     handleAction={deleteReminder}
-                     actionText="Yes, please."
-                     rejectText="Cancel"
-                     className="">
-                     delete reminder
-                  </Dialogue>
+                  <div className="mt-4 flex items-center justify-between">
+                     <AddReminder type="edit" className="mr-4 transition border border-solid text-color-1 border-color-1 hover:border-color-1-hover rounded-4 p-2 capitalize text-xs">
+                        edit reminder
+                     </AddReminder>
+                     <Dialogue
+                        description="Delete reminder from your calendar?"
+                        title="Delete Reminder?"
+                        handleAction={deleteReminder}
+                        actionText="Yes, please."
+                        rejectText="Cancel"
+                        className="bg-color-1 transition hover:bg-color-1-hover border border-color-1 hover:border-color-1-hover rounded-4 p-2 capitalize text-color-white text-xs">
+                        delete reminder
+                     </Dialogue>
+                  </div>
                </div>
             ) : (
                'no event selected'
