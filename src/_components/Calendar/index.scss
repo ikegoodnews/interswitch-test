@@ -39,11 +39,6 @@
   font-weight: 700;
 }
 
-.day {
-  cursor: pointer;
-  font-weight: 600;
-}
-
 .day-name {
   font-size: .7rem;
   letter-spacing: .02rem;
@@ -54,6 +49,19 @@
   padding: 0 10px;
   height: fit-content;
   background-color: #00336a;
+}
+
+.day {
+  cursor: pointer;
+  font-weight: 600;
+  transition: .2s ease-in;
+  &.active {
+    background-color: #bdbdbd;
+  }
+  &.today {
+    color: #fff;
+    background-color: #8c0000;
+  }
 }
 
 .events {

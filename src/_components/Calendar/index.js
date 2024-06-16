@@ -4,9 +4,9 @@ import classNames from 'classnames';
 import {format} from 'date-fns';
 import './index.scss';
 
-const Calendar = (props) => {
+const Calendar = () => {
    const daysOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-   const {events, selectedEvent} = useContext(AppContext);
+   const {events, selectedEvent, selectedDay, setSelectedEvent, onEventSelect, onDaySelect} = useContext(AppContext);
    const [currentDate, setCurrentDate] = useState(new Date());
 
    const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
@@ -31,11 +31,10 @@ const Calendar = (props) => {
    const monthIndex = format(new Date(currentDate), 'M');
 
    const handleOnDaySelect = (day, events) => {
-      console.log(`day=====>`, day);
-
       const date = new Date(yearIndex, monthIndex - 1);
       date.setDate(day);
-      props.onDaySelect(date, events ? events : null);
+      setSelectedEvent(null);
+      onDaySelect(date, events ? events : null);
    };
 
    return (
@@ -54,7 +53,13 @@ const Calendar = (props) => {
             {days.map((day, index) => {
                const dayEvents = events[`${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${day}`];
                return (
-                  <div key={index} className="day" onClick={() => handleOnDaySelect(day, dayEvents)}>
+                  <div
+                     key={index}
+                     className={classNames('day', {
+                        today: Number(format(new Date(selectedDay), 'd')) === day,
+                        active: Number(format(new Date(Date.now()), 'd')) === day,
+                     })}
+                     onClick={() => handleOnDaySelect(day, dayEvents)}>
                      {day}
                      {day && dayEvents && (
                         <div className="events">
@@ -62,7 +67,7 @@ const Calendar = (props) => {
                               <div
                                  key={i}
                                  className={classNames('event', {active: selectedEvent && selectedEvent?.title === event?.title})}
-                                 onClick={() => props.onEventSelect(event)}>
+                                 onClick={(e) => onEventSelect(e, event)}>
                                  {event?.title}
                               </div>
                            ))}

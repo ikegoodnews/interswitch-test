@@ -1,28 +1,14 @@
-import {AddReminder, AppContext, Calendar, DayEvents, EventDetails} from './_components';
-import React, {useContext} from 'react';
+import {AddReminder, Calendar, DayEvents, EventDetails} from './_components';
+import React from 'react';
 
 function App() {
-   const {setDayEvents, setSelectedEvent, setSelectedDay} = useContext(AppContext);
-
-   const onDaySelect = (dayInfo, events) => {
-      console.log(`dayInfo=====>`, dayInfo);
-      console.log(`events=====>`, events);
-      setDayEvents(events ? events : null);
-      setSelectedDay(dayInfo ? dayInfo : null);
-   };
-
-   const onEventSelect = (eventInfo) => {
-      console.log(`eventInfo=====>`, eventInfo);
-      setSelectedEvent(eventInfo ? eventInfo : null);
-   };
-
    return (
       <div className="w-full h-screen flex items-center justify-center app__wrapper">
          <div className="container mx-auto flex items-center justify-center">
-            <DayEvents onEventSelect={onEventSelect} />
+            <DayEvents />
 
             <div className="p-lg-8 p-4">
-               <Calendar onDaySelect={onDaySelect} onEventSelect={onEventSelect} />
+               <Calendar />
             </div>
 
             <div className="relative h-[80vh] w-1/4 bg-color-white text-color-dark p-lg-8 p-4">

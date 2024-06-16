@@ -16,8 +16,33 @@ export const AppProvider = ({children}) => {
       })();
    }, []);
 
+   const onEventSelect = (e, eventInfo) => {
+      e.stopPropagation();
+      // console.log(`eventInfo=====>`, eventInfo);
+      setSelectedEvent(eventInfo ? eventInfo : null);
+   };
+
+   const onDaySelect = (dayInfo, events) => {
+      // console.log(`dayInfo=====>`, dayInfo);
+      // console.log(`events=====>`, events);
+      setDayEvents(events ? events : null);
+      setSelectedDay(dayInfo ? dayInfo : null);
+   };
+
    return (
-      <AppContext.Provider value={{events, setEvents, dayEvents, setDayEvents, selectedEvent, setSelectedEvent, selectedDay, setSelectedDay}}>
+      <AppContext.Provider
+         value={{
+            events,
+            setEvents,
+            dayEvents,
+            setDayEvents,
+            selectedEvent,
+            setSelectedEvent,
+            selectedDay,
+            setSelectedDay,
+            onEventSelect,
+            onDaySelect,
+         }}>
          {children}
       </AppContext.Provider>
    );

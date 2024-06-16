@@ -2,8 +2,8 @@ import {AppContext} from '../AppContext';
 import React, {useContext} from 'react';
 import './index.scss';
 
-const DayEvents = (props) => {
-   const {dayEvents} = useContext(AppContext);
+const DayEvents = () => {
+   const {dayEvents, onEventSelect} = useContext(AppContext);
 
    return (
       <div className="daily__events h-[80vh] w-1/4 bg-color-white text-color-dark p-lg-8 p-4">
@@ -11,7 +11,7 @@ const DayEvents = (props) => {
          <ul className="pt-4">
             {dayEvents?.length ? (
                dayEvents?.map((event, index) => (
-                  <li key={index} className="mb-2 p-1" onClick={() => props?.onEventSelect(event)}>
+                  <li key={index} className="mb-2 p-1" onClick={(e) => onEventSelect(e, event)}>
                      {event?.title}
                   </li>
                ))
