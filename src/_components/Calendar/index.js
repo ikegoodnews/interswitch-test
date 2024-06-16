@@ -28,7 +28,6 @@ const Calendar = () => {
          weekends.push(i);
       }
    }
-   console.log(`weekends=====>`, weekends);
 
    const handlePrevMonth = () => {
       setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
@@ -67,9 +66,9 @@ const Calendar = () => {
                   <div
                      key={index}
                      className={classNames('day', {
-                        today: Number(format(new Date(selectedDay), 'd')) === day,
-                        active: Number(format(new Date(Date.now()), 'd')) === day,
+                        selected: Number(format(new Date(selectedDay), 'd')) === day,
                         weekends: weekends?.find((weekend) => weekend === day),
+                        today: Number(format(new Date(), 'd')) === day,
                      })}
                      onClick={() => handleOnDaySelect(day, dayEvents)}>
                      {day}
