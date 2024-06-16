@@ -9,6 +9,7 @@ const Calendar = () => {
    const {events, selectedEvent, selectedDay, setSelectedEvent, onEventSelect, onDaySelect} = useContext(AppContext);
    const [currentDate, setCurrentDate] = useState(new Date());
 
+   let weekends = [];
    const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
    const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
    const startDay = startOfMonth.getDay();
@@ -18,6 +19,16 @@ const Calendar = () => {
       const day = index - startDay + 1;
       return day > 0 && day <= daysInMonth ? day : null;
    });
+
+   for (let i = 1; i <= daysInMonth; i++) {
+      //looping through days in month
+      let newDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
+      if (newDate.getDay() === 0 || newDate.getDay() === 6) {
+         //if Sunday or Saturday
+         weekends.push(i);
+      }
+   }
+   console.log(`weekends=====>`, weekends);
 
    const handlePrevMonth = () => {
       setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
@@ -58,6 +69,7 @@ const Calendar = () => {
                      className={classNames('day', {
                         today: Number(format(new Date(selectedDay), 'd')) === day,
                         active: Number(format(new Date(Date.now()), 'd')) === day,
+                        weekends: weekends?.find((weekend) => weekend === day),
                      })}
                      onClick={() => handleOnDaySelect(day, dayEvents)}>
                      {day}
