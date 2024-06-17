@@ -8,6 +8,8 @@ module.exports = {
          'color-dark': '#000000',
          'color-1': '#ba0000',
          'color-1-hover': '#ba000098',
+         'color-2': '#00336a',
+         'color-2-hover': '#00336a98',
          'color-btn-hover': '#303030',
          'color-3-hover': '#34A85398',
       },
